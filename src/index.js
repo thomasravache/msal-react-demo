@@ -15,7 +15,19 @@ const pca = new PublicClientApplication({
         clientId: '594c06c5-c1ff-4142-84a2-0c00d48d04df',
         authority: 'https://login.microsoftonline.com/e30a715f-c014-463a-89ac-9f54d86cd93d',
         redirectUri: '/',
-    }
+    },
+    cache: {
+        cacheLocation: 'localStorage',
+        storeAuthStateInCookie: false,
+    },
+    system: {
+        loggerOptions: {
+            loggerCallback: (level, message, containsPII) => {
+                console.log(message);
+            },
+            logLevel: 'Verbose',
+        }
+    },
 });
 
 pca.addEventCallback((event) => {
